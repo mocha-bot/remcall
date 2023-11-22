@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto.momail.v1;
+
+import "google/api/annotations.proto";
+
+// Here is the overall greeting service definition where we define all our endpoints
+service MomailService {
+  // Sends a greeting
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {
+    option (google.api.http) = {
+      post: "/v1/example/echo"
+      body: "*"
+    };
+  }
+}
+
+// The request message containing the user's name
+message SendEmailRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message SendEmailResponse {
+  string message = 1;
+}
