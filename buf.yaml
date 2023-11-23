@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/aldiwildan77/remcall
+name: buf.build/mocha/remcall
 deps:
   - buf.build/googleapis/googleapis
 breaking:
