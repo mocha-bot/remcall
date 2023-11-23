@@ -14,8 +14,8 @@ jobs:
       - uses: bufbuild/buf-lint-action@v1
       - uses: bufbuild/buf-breaking-action@v1
         with:
-          input: protos
-          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,ref=HEAD~1,subdir=protos'
+          input: proto
+          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,ref=HEAD~1,subdir=proto'
       - uses: bufbuild/buf-breaking-action@v1
         with:
           input: extensions
@@ -26,5 +26,5 @@ jobs:
           buf_token: ${{ secrets.BUF_TOKEN }}
       - uses: bufbuild/buf-push-action@v1
         with:
-          input: protos
+          input: proto
           buf_token: ${{ secrets.BUF_TOKEN }}
