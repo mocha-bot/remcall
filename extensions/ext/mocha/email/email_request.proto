@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ext.mocha.email;
+
+import "google/protobuf/any.proto";
+
+message Email {
+  string subject = 1;
+  string template_serial = 2;
+  From from = 3;
+  repeated string to = 4;
+  repeated string cc = 5;
+  repeated string bcc = 6;
+  map<string, google.protobuf.Any> dynamic_content = 7;
+}
+
+message From {
+  string name = 1;
+  string email = 2;
+}

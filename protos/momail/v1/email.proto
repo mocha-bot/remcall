@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package momail.v1;
+
+import "google/api/annotations.proto";
+import "ext/mocha/email/email_request.proto";
+
+service MomailService {
+  rpc SendEmails(SendEmailsRequest) returns (SendEmailsResponse) {
+    option (google.api.http) = {
+      post: "/v1/email/sends"
+      body: "*"
+    };
+  }
+}
+
+message SendEmailsRequest {
+  repeated ext.mocha.email.Email emails = 1;
+}
+
+message SendEmailsResponse {
+  repeated int32 ids = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package mopay.v1;
+
+import "google/api/annotations.proto";
+
+service MopayService {
+  rpc Callback(CallbackRequest) returns (CallbackResponse) {
+    option (google.api.http) = {
+      post: "/v1/pay/callback"
+      body: "*"
+    };
+  }
+}
+
+message CallbackRequest {
+  
+}
+
+message CallbackResponse {
+  
+}

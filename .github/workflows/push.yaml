@@ -17,4 +17,9 @@ jobs:
           against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,ref=HEAD~1'
       - uses: bufbuild/buf-push-action@v1
         with:
+          input: extensions
+          buf_token: ${{ secrets.BUF_TOKEN }}
+      - uses: bufbuild/buf-push-action@v1
+        with:
+          input: protos
           buf_token: ${{ secrets.BUF_TOKEN }}

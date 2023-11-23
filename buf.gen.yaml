@@ -1,8 +1,13 @@
 version: v1
 managed:
   enabled: true
+  optimize_for: SPEED
   go_package_prefix:
     default: github.com/mocha-bot/remcall/gen/go
+    override:
+      buf.build/mocha/extensions: github.com/mocha-bot/remcall/gen/go
+    except:
+      - buf.build/googleapis/googleapis
 plugins:
   - plugin: buf.build/protocolbuffers/go:v1.31.0
     out: gen/go
