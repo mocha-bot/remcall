@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package momail.v1;
 
-import "google/api/annotations.proto";
 import "ext/mocha/email/email_request.proto";
+import "google/api/annotations.proto";
 
 service MomailService {
   rpc SendEmails(SendEmailsRequest) returns (SendEmailsResponse) {
