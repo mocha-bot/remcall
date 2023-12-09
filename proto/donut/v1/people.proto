@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package donut.v1;
+
+import "donut/v1/donut.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service PeopleService {
+  rpc GetPeople(stream GetPeopleRequest) returns (stream GetPeopleResponse) {
+    option (google.api.http) = {get: "/v1/donut/people"};
+  }
+
+  rpc RegisterPeople(stream RegisterPeopleRequest) returns (stream RegisterPeopleResponse) {
+    option (google.api.http) = {
+      post: "/v1/donut/people/register"
+      body: "*"
+    };
+  }
+
+  rpc UnRegisterPeople(stream UnRegisterPeopleRequest) returns (stream UnRegisterPeopleResponse) {
+    option (google.api.http) = {
+      post: "/v1/donut/people/unregister",
+      body: "*"
+    };
+  }
+
+  rpc CallPeople(CallPeopleRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/v1/donut/{matchmaker_serial}/people/call",
+      body: "*"
+    };
+  }
+
+  rpc GetPeoplePair(GetPeoplePairRequest) returns (GetPeoplePairResponse) {
+    option (google.api.http) = {get: "/v1/donut/{matchmaker_serial}/people/pair"};
+  }
+}
+
+message GetPeopleRequest {
+  string matchmaker_serial = 1;
+}
+
+message GetPeopleResponse {
+  repeated Person people = 1;
+}
+
+message RegisterPeopleRequest {
+  string reference = 1;
+  string matchmaker_serial = 2;
+}
+
+message RegisterPeopleResponse {
+  repeated Person people = 1;
+}
+
+message UnRegisterPeopleRequest {
+  string reference = 1;
+  string matchmaker_serial = 2;
+}
+
+message UnRegisterPeopleResponse {
+  repeated Person people = 1;
+}
+
+message CallPeopleRequest {
+  string matchmaker_serial = 1;
+  repeated string references = 2;
+}
+
+message GetPeoplePairRequest {
+  string matchmaker_serial = 1;
+}
+
+message GetPeoplePairResponse {
+  repeated PeoplePair people_pairs = 1;
+}

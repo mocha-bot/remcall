@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package donut.v1;
+
+import "donut/v1/donut.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service MatchMakerService {
+  rpc CreateMatchMaker(CreateMatchMakerRequest) returns (CreateMatchMakerResponse) {
+    option (google.api.http) = {
+      post: "/v1/donut/matchmaker"
+      body: "*"
+    };
+  }
+
+  rpc GetMatchMakerInformation(GetMatchMakerInformationRequest) returns (GetMatchMakerInformationResponse) {
+    option (google.api.http) = {get: "/v1/donut/matchmaker/{serial}"};
+  }
+
+  rpc StartMatchMaker(StartMatchMakerRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {post: "/v1/donut/matchmaker/{serial}/start"};
+  }
+
+  rpc StopMatchMaker(StopMatchMakerRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {post: "/v1/donut/matchmaker/{serial}/stop"};
+  }
+}
+
+message MatchMakerInformation {
+  MatchMaker match_maker = 1;
+}
+
+message CreateMatchMakerRequest {
+  MatchMaker match_maker = 1;
+}
+
+message CreateMatchMakerResponse {
+  string serial = 1;
+}
+
+message GetMatchMakerInformationRequest {
+  string serial = 1;
+}
+
+message GetMatchMakerInformationResponse {
+  MatchMaker match_maker = 1;
+}
+
+message StartMatchMakerRequest {
+  string serial = 1;
+}
+
+message StopMatchMakerRequest {
+  string serial = 1;
+}
