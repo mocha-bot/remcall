@@ -13,10 +13,6 @@ service MopayService {
   }
 }
 
-message CallbackRequest {
-  
-}
+message CallbackRequest {}
 
-message CallbackResponse {
-  
-}
+message CallbackResponse {}

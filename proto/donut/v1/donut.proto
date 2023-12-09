@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package donut.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message MatchMaker {
+  string serial = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp start_time = 4;
+  int32 duration = 5;
+}
+
+message Person {
+  string reference = 1;
+}
+
+message PeoplePair {
+  string serial = 1;
+  repeated Person people = 2;
+}
